@@ -379,28 +379,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1674239755178844, guid: 1ad98ed762289b340b1d531edf093ad7,
     type: 2}
   m_PrefabInternal: {fileID: 1898942046}
-<<<<<<< HEAD
---- !u!114 &1101634746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1101634742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d58517efdd7a045898e607fdab96b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mopPrefab: {fileID: 1228707240200294, guid: 23cf6ca8755d532469875291a89c78fd, type: 2}
-  trashbagPrefab: {fileID: 1878305246064344, guid: 9c47866b3b8d72243a1969e05e57509e,
-    type: 2}
-  footprintPrefab: {fileID: 1060065112855826, guid: 5c0b946d2d4b29b40a7b9aa0ac99496a,
-    type: 2}
-  feetDirtyTurns: 4
---- !u!1001 &1129564750
-=======
 --- !u!1001 &75655305
->>>>>>> 7c7babd2c15e4293b42c17696edff0f430869793
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
