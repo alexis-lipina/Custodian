@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //gets movement input
         if (!isMoving)
         {
@@ -56,20 +57,21 @@ public class PlayerMovement : MonoBehaviour
                 input.y = 1;
                 StartCoroutine(Move(input));
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            else if (Input.GetKeyDown(KeyCode.S))
             {
                 input.x = 0;
                 input.y = -1;
                 StartCoroutine(Move(input));
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            else if (Input.GetKeyDown(KeyCode.D))
             {
                 input.y = 0;
                 input.x = 1;
                 StartCoroutine(Move(input));
             }
-            if (Input.GetKeyDown(KeyCode.A))
+            else if (Input.GetKeyDown(KeyCode.A))
             {
+                input.y = 0;
                 input.x = -1;
                 StartCoroutine(Move(input));
             }
@@ -100,13 +102,13 @@ public class PlayerMovement : MonoBehaviour
                 t = 1f;
             }
         }
-        if (hasTrashbag)
-        {
-            if(dirtTiles.Contains(endPos))
-            {
-                t = 1f;
-            }
-        }
+        //if (hasTrashbag)
+        //{
+        //    if (dirtTiles.Contains(endPos))
+        //    {
+        //        t = 1f;
+        //    }
+        //}
 
         //smooth lerp between startPos and endPos
         while (t < 1f)
@@ -122,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         {
             RemoveTrash();
         }
-        if(mopDeployed && dirtTiles.Contains(transform.position))
+        if(hasMop && mopDeployed && dirtTiles.Contains(transform.position))
         {
             RemoveDirt();
         }
@@ -131,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GetTrashbag();
         }
-        if (mopTiles.Contains(transform.position))
+        else if (mopTiles.Contains(transform.position))
         {
             GetMop();
         }
@@ -163,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void GetTrashbag()
     {
-        GameObject trashbag = (from GameObject trashbagTile in GameObject.FindGameObjectsWithTag("Trashbag") where trashbagTile.transform.position == transform.position select trashbagTile).ToList()[0];
+        GameObject trashbag = (from GameObject trashbagTile in trashBagTiles where trashbagTile.transform.position == transform.position select trashbagTile).ToList()[0];
         trashBagTiles.Remove(trashbag.transform.position);
         Destroy(trashbag);
         if (hasMop)
@@ -181,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void GetMop()
     {
-        GameObject mop = (from GameObject mopTile in GameObject.FindGameObjectsWithTag("Mop") where mopTile.transform.position == transform.position select mopTile).ToList()[0];
+        GameObject mop = (from GameObject mopTile in mopTiles where mopTile.transform.position == transform.position select mopTile).ToList()[0];
         mopTiles.Remove(mop.transform.position);
         Destroy(mop);
         if (hasTrashbag)
