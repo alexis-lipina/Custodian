@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public enum Direction { North = 0, East = 270, South = 180, West = 90 }
 public class PlayerMovement : MonoBehaviour
@@ -37,6 +38,13 @@ public class PlayerMovement : MonoBehaviour
     private int mopTilesLeft;
     private bool isMoving;
 
+    [SerializeField] GameObject uiMopDeployed;
+    [SerializeField] GameObject uiWaterMeter;
+    [SerializeField] GameObject uiGarbageMeter;
+    [SerializeField] Sprite[] mopDeployedSprites;
+    [SerializeField] Sprite[] waterMeterSprites;
+    [SerializeField] Sprite[] garbageMeterSprites;
+
 
     void Start()
     {
@@ -52,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
         waterTiles = new List<Vector3>();
 
         animator = gameObject.GetComponent<Animator>();
+
+        uiMopDeployed.SetActive(false);
+        uiWaterMeter.SetActive(false);
+        uiGarbageMeter.SetActive(false);
 
         hasMop = false;
         mopDeployed = false;
@@ -71,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     mopDeployed = !mopDeployed;
                     animator.SetBool("mopDeployed", mopDeployed);
+                    UpdateUI();
                 }
             }
 
@@ -129,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (wallTiles.Contains(endPos))
         {
+            animator.SetBool("walkBool", false);
             isMoving = false;
             yield break;
         }
@@ -215,6 +229,8 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("walkBool", false);
 
+        UpdateUI();
+
         isMoving = false;
     }
 
@@ -293,5 +309,38 @@ public class PlayerMovement : MonoBehaviour
     {
         Instantiate(waterPrefab, lastPos, transform.rotation);
         waterTiles.Add(lastPos);
+    }
+
+
+    private void UpdateUI()
+    {
+        if (hasMop)
+        {
+            uiGarbageMeter.SetActive(false);
+            uiMopDeployed.SetActive(true);
+            uiWaterMeter.SetActive(true);
+            if (mopDeployed)
+            {
+                uiMopDeployed.GetComponent<Image>().sprite = mopDeployedSprites[1];
+            }
+            else
+            {
+                uiMopDeployed.GetComponent<Image>().sprite = mopDeployedSprites[0];
+            }
+            uiWaterMeter.GetComponent<Image>().sprite = waterMeterSprites[mopTilesLeft];
+        }
+        else if (hasTrashbag)
+        {
+            uiMopDeployed.SetActive(false);
+            uiWaterMeter.SetActive(false);
+            uiGarbageMeter.SetActive(true);
+            uiGarbageMeter.GetComponent<Image>().sprite = garbageMeterSprites[currentTrashLevel];
+        }
+        else
+        {
+            uiMopDeployed.SetActive(false);
+            uiWaterMeter.SetActive(false);
+            uiGarbageMeter.SetActive(false);
+        }
     }
 }
