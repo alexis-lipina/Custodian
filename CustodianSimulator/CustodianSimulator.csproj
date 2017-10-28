@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Mop.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Pow.cs" />
     <Compile Include="Assets\Scripts\Trashbag.cs" />
     <Compile Include="Assets\Scripts\WallController.cs" />
   </ItemGroup>

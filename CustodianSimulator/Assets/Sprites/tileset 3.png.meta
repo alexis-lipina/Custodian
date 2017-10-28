@@ -1,44 +1,46 @@
 fileFormatVersion: 2
-guid: 89bd1eedc58f0a94c89e73d0402a079f
-timeCreated: 1509213516
+guid: 7ef2a75922bc5864081956dd9748a690
+timeCreated: 1509228146
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: tileset 1_0
-    21300002: tileset 1_1
-    21300004: tileset 1_2
-    21300006: tileset 1_3
-    21300008: tileset 1_4
-    21300010: tileset 1_5
-    21300012: tileset 1_6
-    21300014: tileset 1_7
-    21300016: tileset 1_8
-    21300018: tileset 1_9
-    21300020: tileset 1_10
-    21300022: tileset 1_11
-    21300024: tileset 1_12
-    21300026: tileset 1_13
-    21300028: tileset 1_14
-    21300030: tileset 1_15
-    21300032: tileset 1_16
-    21300034: tileset 1_17
-    21300036: tileset 1_18
-    21300038: tileset 1_19
-    21300040: tileset 1_20
-    21300042: tileset 1_21
-    21300044: tileset 1_22
-    21300046: tileset 1_23
-    21300048: tileset 1_24
-    21300050: tileset 1_25
-    21300052: tileset 1_26
-    21300054: tileset 1_27
-    21300056: tileset 1_28
-    21300058: tileset 1_29
-    21300060: tileset 1_30
-    21300062: tileset 1_31
-    21300064: tileset 1_32
-    21300066: tileset 1_33
-    21300068: tileset 1_34
+    21300000: tileset 3_0
+    21300002: tileset 3_1
+    21300004: tileset 3_2
+    21300006: tileset 3_3
+    21300008: tileset 3_4
+    21300010: tileset 3_5
+    21300012: tileset 3_6
+    21300014: tileset 3_7
+    21300016: tileset 3_8
+    21300018: tileset 3_9
+    21300020: tileset 3_10
+    21300022: tileset 3_11
+    21300024: tileset 3_12
+    21300026: tileset 3_13
+    21300028: tileset 3_14
+    21300030: tileset 3_15
+    21300032: tileset 3_16
+    21300034: tileset 3_17
+    21300036: tileset 3_18
+    21300038: tileset 3_19
+    21300040: tileset 3_20
+    21300042: tileset 3_21
+    21300044: tileset 3_22
+    21300046: tileset 3_23
+    21300048: tileset 3_24
+    21300050: tileset 3_25
+    21300052: tileset 3_26
+    21300054: tileset 3_27
+    21300056: tileset 3_28
+    21300058: tileset 3_29
+    21300060: tileset 3_30
+    21300062: tileset 3_31
+    21300064: tileset 3_32
+    21300066: tileset 3_33
+    21300068: tileset 3_34
+    21300070: tileset 3_35
+    21300072: tileset 3_36
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -54,7 +56,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -88,7 +90,7 @@ TextureImporter:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 8192
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -96,7 +98,7 @@ TextureImporter:
   - buildTarget: Standalone
     maxTextureSize: 8192
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tileset 1_0
+      name: tileset 3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,7 +120,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_1
+      name: tileset 3_1
       rect:
         serializedVersion: 2
         x: 32
@@ -131,7 +133,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_2
+      name: tileset 3_2
       rect:
         serializedVersion: 2
         x: 64
@@ -144,7 +146,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_3
+      name: tileset 3_3
       rect:
         serializedVersion: 2
         x: 96
@@ -157,7 +159,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_4
+      name: tileset 3_4
       rect:
         serializedVersion: 2
         x: 128
@@ -170,7 +172,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_5
+      name: tileset 3_5
       rect:
         serializedVersion: 2
         x: 160
@@ -183,7 +185,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_6
+      name: tileset 3_6
       rect:
         serializedVersion: 2
         x: 192
@@ -196,7 +198,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_7
+      name: tileset 3_7
       rect:
         serializedVersion: 2
         x: 224
@@ -209,7 +211,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_8
+      name: tileset 3_8
       rect:
         serializedVersion: 2
         x: 0
@@ -222,7 +224,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_9
+      name: tileset 3_9
       rect:
         serializedVersion: 2
         x: 32
@@ -235,7 +237,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_10
+      name: tileset 3_10
       rect:
         serializedVersion: 2
         x: 64
@@ -248,7 +250,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_11
+      name: tileset 3_11
       rect:
         serializedVersion: 2
         x: 96
@@ -261,7 +263,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_12
+      name: tileset 3_12
       rect:
         serializedVersion: 2
         x: 128
@@ -274,7 +276,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_13
+      name: tileset 3_13
       rect:
         serializedVersion: 2
         x: 160
@@ -287,7 +289,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_14
+      name: tileset 3_14
       rect:
         serializedVersion: 2
         x: 192
@@ -300,7 +302,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_15
+      name: tileset 3_15
       rect:
         serializedVersion: 2
         x: 224
@@ -313,7 +315,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_16
+      name: tileset 3_16
       rect:
         serializedVersion: 2
         x: 0
@@ -326,7 +328,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_17
+      name: tileset 3_17
       rect:
         serializedVersion: 2
         x: 32
@@ -339,7 +341,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_18
+      name: tileset 3_18
       rect:
         serializedVersion: 2
         x: 64
@@ -352,7 +354,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_19
+      name: tileset 3_19
       rect:
         serializedVersion: 2
         x: 96
@@ -365,7 +367,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_20
+      name: tileset 3_20
       rect:
         serializedVersion: 2
         x: 160
@@ -378,7 +380,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_21
+      name: tileset 3_21
       rect:
         serializedVersion: 2
         x: 192
@@ -391,7 +393,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_22
+      name: tileset 3_22
       rect:
         serializedVersion: 2
         x: 224
@@ -404,7 +406,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_23
+      name: tileset 3_23
       rect:
         serializedVersion: 2
         x: 0
@@ -417,7 +419,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_24
+      name: tileset 3_24
       rect:
         serializedVersion: 2
         x: 32
@@ -430,7 +432,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_25
+      name: tileset 3_25
       rect:
         serializedVersion: 2
         x: 64
@@ -443,7 +445,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_26
+      name: tileset 3_26
       rect:
         serializedVersion: 2
         x: 96
@@ -456,7 +458,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_27
+      name: tileset 3_27
       rect:
         serializedVersion: 2
         x: 128
@@ -469,7 +471,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_28
+      name: tileset 3_28
       rect:
         serializedVersion: 2
         x: 160
@@ -482,7 +484,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_29
+      name: tileset 3_29
       rect:
         serializedVersion: 2
         x: 192
@@ -495,7 +497,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_30
+      name: tileset 3_30
       rect:
         serializedVersion: 2
         x: 224
@@ -508,7 +510,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_31
+      name: tileset 3_31
       rect:
         serializedVersion: 2
         x: 0
@@ -521,7 +523,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_32
+      name: tileset 3_32
       rect:
         serializedVersion: 2
         x: 32
@@ -534,7 +536,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_33
+      name: tileset 3_33
       rect:
         serializedVersion: 2
         x: 64
@@ -547,10 +549,36 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tileset 1_34
+      name: tileset 3_34
       rect:
         serializedVersion: 2
         x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tileset 3_35
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tileset 3_36
+      rect:
+        serializedVersion: 2
+        x: 160
         y: 0
         width: 32
         height: 32

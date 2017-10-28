@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public enum Direction { North = 0, East = 270, South = 180, West = 90 }
 public class PlayerMovement : MonoBehaviour
 {
+    private int turns;
+
     //locations of special tiles
     private List<Vector3> dirtTiles;
     private List<Vector3> trashTiles;
@@ -38,12 +40,17 @@ public class PlayerMovement : MonoBehaviour
     private int mopTilesLeft;
     private bool isMoving;
 
+    //ui
+    [SerializeField] Canvas canvas;
     [SerializeField] GameObject uiMopDeployed;
     [SerializeField] GameObject uiWaterMeter;
     [SerializeField] GameObject uiGarbageMeter;
     [SerializeField] Sprite[] mopDeployedSprites;
     [SerializeField] Sprite[] waterMeterSprites;
     [SerializeField] Sprite[] garbageMeterSprites;
+    [SerializeField] GameObject deployMop;
+    [SerializeField] GameObject rechargeMop;
+    [SerializeField] GameObject takeOutTrash;
 
 
     void Start()
@@ -68,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         hasMop = false;
         mopDeployed = false;
         hasTrashbag = false;
+
+        turns = 0;
     }
 
     // Update is called once per frame
@@ -83,6 +92,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     mopDeployed = !mopDeployed;
                     animator.SetBool("mopDeployed", mopDeployed);
+                    if (mopDeployed)
+                    {
+                        SuperHero(deployMop);
+                    }
                     UpdateUI();
                 }
             }
@@ -135,10 +148,12 @@ public class PlayerMovement : MonoBehaviour
             hasTrashbag = false;
             currentTrashLevel = 0;
             animator.SetBool("garbageBool", false);
+            SuperHero(takeOutTrash);
         }
         if (bucketTiles.Contains(endPos) && hasMop)
         {
             mopTilesLeft = mopLifespan;
+            SuperHero(rechargeMop);
         }
         if (wallTiles.Contains(endPos))
         {
@@ -148,13 +163,17 @@ public class PlayerMovement : MonoBehaviour
         }
         if ( trashCanTiles.Contains(endPos) || bucketTiles.Contains(endPos))
         {
-            t = 1f;
+            animator.SetBool("walkBool", false);
+            isMoving = false;
+            yield break;
         }
         if (!hasTrashbag || currentTrashLevel == maxTrash)
         {
             if(trashTiles.Contains(endPos))
             {
-                t = 1f;
+                animator.SetBool("walkBool", false);
+                isMoving = false;
+                yield break;
             }
         }
         //smooth lerp between startPos and endPos
@@ -232,6 +251,8 @@ public class PlayerMovement : MonoBehaviour
         UpdateUI();
 
         isMoving = false;
+
+        turns++;
     }
 
     /// <summary>
@@ -307,7 +328,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MopFloor(Vector3 lastPos)
     {
-        Instantiate(waterPrefab, lastPos, transform.rotation);
+        Instantiate(waterPrefab, lastPos, Quaternion.identity);
         waterTiles.Add(lastPos);
     }
 
@@ -342,5 +363,10 @@ public class PlayerMovement : MonoBehaviour
             uiWaterMeter.SetActive(false);
             uiGarbageMeter.SetActive(false);
         }
+    }
+
+    private void SuperHero(GameObject imageToUse)
+    {
+        Instantiate(imageToUse, transform.position, Quaternion.identity);
     }
 }
