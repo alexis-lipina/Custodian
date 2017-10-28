@@ -161,12 +161,12 @@ public class PlayerMovement : MonoBehaviour
         //clean dirt if mop deployed and have water left
         if(hasMop && mopDeployed && dirtTiles.Contains(startPos) && mopTilesLeft > 0)
         {
-            RemoveDirt();
+            RemoveDirt(startPos);
         }
         //remove footprints if mop deployed and have water left
         if(hasMop && mopDeployed && footprintTiles.Contains(startPos) && mopTilesLeft > 0)
         {
-            List<GameObject> footprints = (from GameObject footprintTile in GameObject.FindGameObjectsWithTag("Footprint") where footprintTile.transform.position == transform.position select footprintTile).ToList();
+            List<GameObject> footprints = (from GameObject footprintTile in GameObject.FindGameObjectsWithTag("Footprint") where footprintTile.transform.position == startPos select footprintTile).ToList();
 
             for(int i = 0; i < footprints.Count; i++)
             {
@@ -179,14 +179,11 @@ public class PlayerMovement : MonoBehaviour
         //makes footprints in water
         if (waterTiles.Contains(transform.position))
         {
-            List<GameObject> waterList = (from GameObject waterTile in GameObject.FindGameObjectsWithTag("Water") where waterTile.transform.position == transform.position select waterTile).ToList();
-            if(waterList.Count > 0)
-            {
-                waterTiles.Remove(waterList[0].transform.position);
-                Destroy(waterList[0]);
-                Instantiate(waterFootprintPrefab, transform.position, transform.rotation);
-            }
-            
+            GameObject water = (from GameObject waterTile in GameObject.FindGameObjectsWithTag("Water") where waterTile.transform.position == transform.position select waterTile).ToList()[0];
+            waterTiles.Remove(water.transform.position);
+            Destroy(water);
+            Instantiate(waterFootprintPrefab, transform.position, transform.rotation);
+            footprintTiles.Add(transform.position);
         }
         //pick up trashbag
         if (trashBagTiles.Contains(transform.position) && !hasTrashbag)
@@ -215,6 +212,7 @@ public class PlayerMovement : MonoBehaviour
         if (mopDeployed && mopTilesLeft > 0 && !waterTiles.Contains(startPos))
         {
             MopFloor(startPos);
+            mopTilesLeft--;
         }
 
         animator.SetBool("walkBool", false);
@@ -236,10 +234,10 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Removes dirt from the scene
     /// </summary>
-    private void RemoveDirt()
+    private void RemoveDirt(Vector3 dirtPos)
     {
         mopTilesLeft--;
-        GameObject dirt = (from GameObject dirtTile in GameObject.FindGameObjectsWithTag("Dirt") where dirtTile.transform.position == transform.position select dirtTile).ToList()[0];
+        GameObject dirt = (from GameObject dirtTile in GameObject.FindGameObjectsWithTag("Dirt") where dirtTile.transform.position == dirtPos select dirtTile).ToList()[0];
         dirtTiles.Remove(dirt.transform.position);
         Destroy(dirt);
     }
