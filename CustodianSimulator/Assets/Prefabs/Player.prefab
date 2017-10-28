@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4838529690733664}
   - component: {fileID: 212913251483209158}
   - component: {fileID: 114786796977039890}
+  - component: {fileID: 95166498756808698}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -41,6 +42,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95166498756808698
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674239755178844}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4908ece991896494bbbb427b90bf3190, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114786796977039890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,8 +70,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d58517efdd7a045898e607fdab96b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mop: {fileID: 1228707240200294, guid: 23cf6ca8755d532469875291a89c78fd, type: 2}
-  trashbag: {fileID: 1878305246064344, guid: 9c47866b3b8d72243a1969e05e57509e, type: 2}
+  mopPrefab: {fileID: 0}
+  trashbagPrefab: {fileID: 0}
+  footprintPrefab: {fileID: 0}
+  maxTrash: 0
+  feetDirtyTurns: 0
 --- !u!212 &212913251483209158
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,7 +108,7 @@ SpriteRenderer:
   m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bb4e1155ef37df44085ced9a822c6533, type: 3}
-  m_Color: {r: 0.15862082, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

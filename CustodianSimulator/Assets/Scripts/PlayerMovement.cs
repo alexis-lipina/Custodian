@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public enum Direction { North = 0, East = 90, South = 180, West = 270 }
+public enum Direction { North = 0, East = 270, South = 180, West = 90 }
 public class PlayerMovement : MonoBehaviour
 {
     //locations of special tiles
@@ -15,11 +15,14 @@ public class PlayerMovement : MonoBehaviour
     private List<Vector3> trashBagTiles;
     private List<Vector3> mopTiles;
     private List<Vector3> footprintTiles;
+    private List<Vector3> waterTiles;
 
     //spawnable objects
     [SerializeField] GameObject mopPrefab;
     [SerializeField] GameObject trashbagPrefab;
     [SerializeField] GameObject footprintPrefab;
+    [SerializeField] GameObject waterPrefab;
+    [SerializeField] GameObject waterFootprintPrefab;
     
     //player states and stats
     private bool hasMop = false;
@@ -29,8 +32,9 @@ public class PlayerMovement : MonoBehaviour
     private int currentTrashLevel = 0;
     [SerializeField] int feetDirtyTurns;
     private int dirtyTurnsRemaining;
-
-    //control fields
+    private Animator animator;
+    [SerializeField] int mopLifespan;
+    private int mopTilesLeft;
     private bool isMoving;
 
 
@@ -45,6 +49,9 @@ public class PlayerMovement : MonoBehaviour
         trashBagTiles = (from GameObject trashBagTile in GameObject.FindGameObjectsWithTag("Trashbag") select trashBagTile.transform.position).ToList();
         mopTiles = (from GameObject mopTile in GameObject.FindGameObjectsWithTag("Mop") select mopTile.transform.position).ToList();
         footprintTiles = new List<Vector3>();
+        waterTiles = new List<Vector3>();
+
+        animator = gameObject.GetComponent<Animator>();
 
         hasMop = false;
         mopDeployed = false;
@@ -63,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
                 if (hasMop)
                 {
                     mopDeployed = !mopDeployed;
+                    animator.SetBool("mopDeployed", mopDeployed);
                 }
             }
 
@@ -93,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    
+
     /// <summary>
     /// Moves the player based on input
     /// </summary>
@@ -101,38 +109,30 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Move(Vector2 input, Direction direction)
     {
         isMoving = true;
+        #region movement calculations
+        animator.SetBool("walkBool", true);
+        transform.localEulerAngles = new Vector3(0, 0, (float)direction);
         float t = 0;
         Vector3 startPos = transform.position;
         Vector3 endPos = new Vector3(startPos.x + input.x, startPos.y + input.y);
-
-        //Vector3 startRot = transform.localEulerAngles;
-
-        //float degrees;
-
-        //float a = (float)direction - startRot.z;
-        //float b = (float)direction - startRot.z;
-        
-        //if(System.Math.Min(System.Math.Abs(a), System.Math.Abs(b)) == a)
-        //{
-        //    degrees = a;
-        //}
-        //else
-        //{
-        //    degrees = b;
-        //}
-
-        //Vector3 endRot = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, transform.rotation.z + degrees);
-
-
-        float moveSpeed = 5;
-
+        float moveSpeed = 4;
         //prevents the player from mvoving into restricted squares
         if(trashCanTiles.Contains(endPos) && hasTrashbag)
         {
             hasTrashbag = false;
             currentTrashLevel = 0;
+            animator.SetBool("garbageBool", false);
         }
-        if (wallTiles.Contains(endPos) || trashCanTiles.Contains(endPos) || bucketTiles.Contains(endPos))
+        if (bucketTiles.Contains(endPos) && hasMop)
+        {
+            mopTilesLeft = mopLifespan;
+        }
+        if (wallTiles.Contains(endPos))
+        {
+            isMoving = false;
+            yield break;
+        }
+        if ( trashCanTiles.Contains(endPos) || bucketTiles.Contains(endPos))
         {
             t = 1f;
         }
@@ -143,30 +143,28 @@ public class PlayerMovement : MonoBehaviour
                 t = 1f;
             }
         }
-
         //smooth lerp between startPos and endPos
         while (t < 1f)
         {
             t += Time.deltaTime * moveSpeed;
             transform.position = Vector3.Lerp(startPos, endPos, t);
-            //transform.localEulerAngles = Vector3.Lerp(startRot, endRot, t);
-
-            
-            
             yield return null;
         }
+        #endregion
 
 
-        //checks if player ended turn in special tile and acts accordingly
-        if(hasTrashbag && trashTiles.Contains(transform.position) && currentTrashLevel < maxTrash)
+        //pick up trash if have trash bag and space in bac
+        if (hasTrashbag && trashTiles.Contains(transform.position) && currentTrashLevel < maxTrash)
         {
             RemoveTrash();
         }
-        if(hasMop && mopDeployed && dirtTiles.Contains(transform.position))
+        //clean dirt if mop deployed and have water left
+        if(hasMop && mopDeployed && dirtTiles.Contains(startPos) && mopTilesLeft > 0)
         {
             RemoveDirt();
         }
-        if(hasMop && mopDeployed && footprintTiles.Contains(transform.position))
+        //remove footprints if mop deployed and have water left
+        if(hasMop && mopDeployed && footprintTiles.Contains(startPos) && mopTilesLeft > 0)
         {
             List<GameObject> footprints = (from GameObject footprintTile in GameObject.FindGameObjectsWithTag("Footprint") where footprintTile.transform.position == transform.position select footprintTile).ToList();
 
@@ -175,28 +173,52 @@ public class PlayerMovement : MonoBehaviour
                 footprintTiles.Remove(footprints[i].transform.position);
                 Destroy(footprints[i]);
             }
-        }
 
+            mopTilesLeft--;
+        }
+        //makes footprints in water
+        if (waterTiles.Contains(transform.position))
+        {
+            List<GameObject> waterList = (from GameObject waterTile in GameObject.FindGameObjectsWithTag("Water") where waterTile.transform.position == transform.position select waterTile).ToList();
+            if(waterList.Count > 0)
+            {
+                waterTiles.Remove(waterList[0].transform.position);
+                Destroy(waterList[0]);
+                Instantiate(waterFootprintPrefab, transform.position, transform.rotation);
+            }
+            
+        }
+        //pick up trashbag
         if (trashBagTiles.Contains(transform.position) && !hasTrashbag)
         {
             GetTrashbag();
         }
+        //pick up mop
         else if (mopTiles.Contains(transform.position) && !hasMop)
         {
             GetMop();
         }
-
-        if(dirtTiles.Contains(transform.position) && !mopDeployed)
+        //gets feet dirty
+        if(dirtTiles.Contains(transform.position) && (!mopDeployed || mopTilesLeft == 0))
         {
             dirtyTurnsRemaining = feetDirtyTurns;
         }
+        //makes foot prints if feet are dirty
         if(!dirtTiles.Contains(transform.position) && !trashTiles.Contains(transform.position) && dirtyTurnsRemaining > 0)
         {
             dirtyTurnsRemaining--;
             if(dirtyTurnsRemaining < 0) { dirtyTurnsRemaining = 0; }
             footprintTiles.Add(transform.position);
-            Instantiate(footprintPrefab, transform.position, Quaternion.identity);
+            Instantiate(footprintPrefab, transform.position, transform.rotation);
         }
+        //makes water if mop is deployed and have water elft
+        if (mopDeployed && mopTilesLeft > 0 && !waterTiles.Contains(startPos))
+        {
+            MopFloor(startPos);
+        }
+
+        animator.SetBool("walkBool", false);
+
         isMoving = false;
     }
 
@@ -216,6 +238,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void RemoveDirt()
     {
+        mopTilesLeft--;
         GameObject dirt = (from GameObject dirtTile in GameObject.FindGameObjectsWithTag("Dirt") where dirtTile.transform.position == transform.position select dirtTile).ToList()[0];
         dirtTiles.Remove(dirt.transform.position);
         Destroy(dirt);
@@ -233,11 +256,18 @@ public class PlayerMovement : MonoBehaviour
         if (hasMop)
         {
             mopTiles.Add(transform.position);
-            Instantiate(mopPrefab, transform.position, Quaternion.identity);
+            GameObject dropMop = Instantiate(mopPrefab, transform.position, Quaternion.identity);
+            Mop mopScript = dropMop.GetComponent<Mop>();
+            mopScript.SetWater(mopTilesLeft);
+            mopTilesLeft = 0;
+
             hasMop = false;
             mopDeployed = false;
+            animator.SetBool("mopBool", false);
+            animator.SetBool("mopDeployed", false);
         }
         hasTrashbag = true;
+        animator.SetBool("garbageBool", true);
     }
 
     /// <summary>
@@ -247,6 +277,7 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject mop = (from GameObject mopTile in GameObject.FindGameObjectsWithTag("Mop") where mopTile.transform.position == transform.position select mopTile).ToList()[0];
         mopTiles.Remove(mop.transform.position);
+        mopTilesLeft = mop.GetComponent<Mop>().WaterLeft;
         Destroy(mop);
         if (hasTrashbag)
         {
@@ -254,11 +285,18 @@ public class PlayerMovement : MonoBehaviour
             GameObject trashbag = Instantiate(trashbagPrefab, transform.position, Quaternion.identity);
             Trashbag trashbagScript = trashbag.GetComponent<Trashbag>();
             trashbagScript.SetTrash(currentTrashLevel);
-
             currentTrashLevel = 0;
+
             hasTrashbag = false;
+            animator.SetBool("garbageBool", false);
         }
         hasMop = true;
         mopDeployed = false;
+        animator.SetBool("mopBool", true);
+    }
+    private void MopFloor(Vector3 lastPos)
+    {
+        Instantiate(waterPrefab, lastPos, transform.rotation);
+        waterTiles.Add(lastPos);
     }
 }
