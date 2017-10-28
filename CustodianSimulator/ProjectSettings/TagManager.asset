@@ -12,6 +12,7 @@ TagManager:
   - Mop
   - Trashbag
   - Footprint
+  - Water
   layers:
   - Default
   - TransparentFX
