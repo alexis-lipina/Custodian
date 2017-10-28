@@ -11,6 +11,7 @@ TagManager:
   - Bucket
   - Mop
   - Trashbag
+  - Footprint
   layers:
   - Default
   - TransparentFX

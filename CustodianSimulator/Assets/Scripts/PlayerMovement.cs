@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public enum Direction { North = 0, East = 90, South = 180, West = 270 }
 public class PlayerMovement : MonoBehaviour
 {
     //locations of special tiles
@@ -13,16 +14,20 @@ public class PlayerMovement : MonoBehaviour
     private List<Vector3> bucketTiles;
     private List<Vector3> trashBagTiles;
     private List<Vector3> mopTiles;
+    private List<Vector3> footprintTiles;
 
     //spawnable objects
-    [SerializeField] GameObject mop;
-    [SerializeField] GameObject trashbag;
+    [SerializeField] GameObject mopPrefab;
+    [SerializeField] GameObject trashbagPrefab;
+    [SerializeField] GameObject footprintPrefab;
     
-    //player states
+    //player states and stats
     private bool hasMop = false;
     private bool mopDeployed = false;
     private bool hasTrashbag = false;
     private int currentTrashLevel = 0;
+    [SerializeField] int feetDirtyTurns;
+    private int dirtyTurnsRemaining;
 
     //control fields
     private bool isMoving;
@@ -38,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         bucketTiles = (from GameObject bucketTile in GameObject.FindGameObjectsWithTag("Bucket") select bucketTile.transform.position).ToList();
         trashBagTiles = (from GameObject trashBagTile in GameObject.FindGameObjectsWithTag("Trashbag") select trashBagTile.transform.position).ToList();
         mopTiles = (from GameObject mopTile in GameObject.FindGameObjectsWithTag("Mop") select mopTile.transform.position).ToList();
+        footprintTiles = new List<Vector3>();
 
         hasMop = false;
         mopDeployed = false;
@@ -64,25 +70,25 @@ public class PlayerMovement : MonoBehaviour
             {
                 input.x = 0;
                 input.y = 1;
-                StartCoroutine(Move(input));
+                StartCoroutine(Move(input, Direction.North));
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 input.x = 0;
                 input.y = -1;
-                StartCoroutine(Move(input));
+                StartCoroutine(Move(input, Direction.South));
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 input.y = 0;
                 input.x = 1;
-                StartCoroutine(Move(input));
+                StartCoroutine(Move(input, Direction.East));
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
                 input.y = 0;
                 input.x = -1;
-                StartCoroutine(Move(input));
+                StartCoroutine(Move(input, Direction.West));
             }
         }
     }
@@ -91,12 +97,32 @@ public class PlayerMovement : MonoBehaviour
     /// Moves the player based on input
     /// </summary>
     /// <param name="input">The location to move to</param>
-    private IEnumerator Move(Vector2 input)
+    private IEnumerator Move(Vector2 input, Direction direction)
     {
         isMoving = true;
-        Vector3 startPos = transform.position;
         float t = 0;
+        Vector3 startPos = transform.position;
         Vector3 endPos = new Vector3(startPos.x + input.x, startPos.y + input.y);
+
+        //Vector3 startRot = transform.localEulerAngles;
+
+        //float degrees;
+
+        //float a = (float)direction - startRot.z;
+        //float b = (float)direction - startRot.z;
+        
+        //if(System.Math.Min(System.Math.Abs(a), System.Math.Abs(b)) == a)
+        //{
+        //    degrees = a;
+        //}
+        //else
+        //{
+        //    degrees = b;
+        //}
+
+        //Vector3 endRot = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, transform.rotation.z + degrees);
+
+
         float moveSpeed = 5;
 
         //prevents the player from mvoving into restricted squares
@@ -117,6 +143,10 @@ public class PlayerMovement : MonoBehaviour
         {
             t += Time.deltaTime * moveSpeed;
             transform.position = Vector3.Lerp(startPos, endPos, t);
+            //transform.localEulerAngles = Vector3.Lerp(startRot, endRot, t);
+
+            
+            
             yield return null;
         }
 
@@ -130,6 +160,12 @@ public class PlayerMovement : MonoBehaviour
         {
             RemoveDirt();
         }
+        if(hasMop && mopDeployed && footprintTiles.Contains(transform.position))
+        {
+            GameObject footprint = (from GameObject footprintTile in GameObject.FindGameObjectsWithTag("Footprint") where footprintTile.transform.position == transform.position select footprintTile).ToList()[0];
+            footprintTiles.Remove(footprint.transform.position);
+            Destroy(footprint);
+        }
 
         if (trashBagTiles.Contains(transform.position))
         {
@@ -138,6 +174,18 @@ public class PlayerMovement : MonoBehaviour
         else if (mopTiles.Contains(transform.position))
         {
             GetMop();
+        }
+
+        if(dirtTiles.Contains(transform.position) && !mopDeployed)
+        {
+            dirtyTurnsRemaining = feetDirtyTurns;
+        }
+        if(!dirtTiles.Contains(transform.position) && !trashTiles.Contains(transform.position) && dirtyTurnsRemaining > 0)
+        {
+            dirtyTurnsRemaining--;
+            if(dirtyTurnsRemaining < 0) { dirtyTurnsRemaining = 0; }
+            footprintTiles.Add(transform.position);
+            Instantiate(footprintPrefab, transform.position, Quaternion.identity);
         }
         isMoving = false;
     }
@@ -150,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
         GameObject trash = (from GameObject trashTile in GameObject.FindGameObjectsWithTag("Trash") where trashTile.transform.position == transform.position select trashTile).ToList()[0];
         trashTiles.Remove(trash.transform.position);
         Destroy(trash);
+        currentTrashLevel++;
     }
     
     /// <summary>
@@ -174,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
         if (hasMop)
         {
             mopTiles.Add(transform.position);
-            Instantiate(mop, transform.position, Quaternion.identity);
+            Instantiate(mopPrefab, transform.position, Quaternion.identity);
             hasMop = false;
             mopDeployed = false;
         }
@@ -192,10 +241,11 @@ public class PlayerMovement : MonoBehaviour
         if (hasTrashbag)
         {
             trashBagTiles.Add(transform.position);
-            GameObject trashbag = Instantiate(this.trashbag, transform.position, Quaternion.identity);
+            GameObject trashbag = Instantiate(trashbagPrefab, transform.position, Quaternion.identity);
             Trashbag trashbagScript = trashbag.GetComponent<Trashbag>();
             trashbagScript.SetTrash(currentTrashLevel);
 
+            currentTrashLevel = 0;
             hasTrashbag = false;
         }
         hasMop = true;
