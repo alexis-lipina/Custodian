@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool hasMop = false;
     private bool mopDeployed = false;
     private bool hasTrashbag = false;
+    private int currentTrashLevel = 0;
 
     //control fields
     private bool isMoving;
@@ -50,6 +51,14 @@ public class PlayerMovement : MonoBehaviour
         //gets movement input
         if (!isMoving)
         {
+            if (Input.GetButtonDown("Submit"))
+            {
+                if (hasMop)
+                {
+                    mopDeployed = !mopDeployed;
+                }
+            }
+
             Vector2 input = Vector2.zero;
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -102,13 +111,6 @@ public class PlayerMovement : MonoBehaviour
                 t = 1f;
             }
         }
-        //if (hasTrashbag)
-        //{
-        //    if (dirtTiles.Contains(endPos))
-        //    {
-        //        t = 1f;
-        //    }
-        //}
 
         //smooth lerp between startPos and endPos
         while (t < 1f)
@@ -165,8 +167,9 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void GetTrashbag()
     {
-        GameObject trashbag = (from GameObject trashbagTile in trashBagTiles where trashbagTile.transform.position == transform.position select trashbagTile).ToList()[0];
+        GameObject trashbag = (from GameObject trashbagTile in GameObject.FindGameObjectsWithTag("Trashbag") where trashbagTile.transform.position == transform.position select trashbagTile).ToList()[0];
         trashBagTiles.Remove(trashbag.transform.position);
+        currentTrashLevel = trashbag.GetComponent<Trashbag>().TrashLevel;
         Destroy(trashbag);
         if (hasMop)
         {
@@ -183,13 +186,16 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void GetMop()
     {
-        GameObject mop = (from GameObject mopTile in mopTiles where mopTile.transform.position == transform.position select mopTile).ToList()[0];
+        GameObject mop = (from GameObject mopTile in GameObject.FindGameObjectsWithTag("Mop") where mopTile.transform.position == transform.position select mopTile).ToList()[0];
         mopTiles.Remove(mop.transform.position);
         Destroy(mop);
         if (hasTrashbag)
         {
             trashBagTiles.Add(transform.position);
-            Instantiate(trashbag, transform.position, Quaternion.identity);
+            GameObject trashbag = Instantiate(this.trashbag, transform.position, Quaternion.identity);
+            Trashbag trashbagScript = trashbag.GetComponent<Trashbag>();
+            trashbagScript.SetTrash(currentTrashLevel);
+
             hasTrashbag = false;
         }
         hasMop = true;
