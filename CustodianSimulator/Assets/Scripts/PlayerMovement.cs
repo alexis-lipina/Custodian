@@ -129,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (wallTiles.Contains(endPos))
         {
+            animator.SetBool("walkBool", false);
             isMoving = false;
             yield break;
         }
