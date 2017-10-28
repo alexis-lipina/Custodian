@@ -51,11 +51,6 @@ public class GameController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
     /// <summary>
     /// Adds a tile to the dirt list
     /// </summary>
@@ -71,22 +66,6 @@ public class GameController : MonoBehaviour
     public static void AddTrash(Vector3 trashTile)
     {
         trashTiles.Add(trashTile);
-    }
-    /// <summary>
-    /// Adds a tile to the trash can list
-    /// </summary>
-    /// <param name="trashCanTile">The position to add</param>
-    public static void AddTrashCan(Vector3 trashCanTile)
-    {
-        trashCanTiles.Add(trashCanTile);
-    }
-    /// <summary>
-    /// Adds a bucket to the bucket list
-    /// </summary>
-    /// <param name="bucketTile">The position to add</param>
-    public static void AddBucket(Vector3 bucketTile)
-    {
-        bucketTiles.Add(bucketTile);
     }
     /// <summary>
     /// Adds a trash back to the trash bag list
@@ -120,5 +99,21 @@ public class GameController : MonoBehaviour
     public static void RemoveTrash(Vector3 trashTile)
     {
         trashTiles.Remove(trashTile);
+    }
+    /// <summary>
+    /// Removes a trash bag from the trash bag list
+    /// </summary>
+    /// <param name="trashBagTile">The position to remove</param>
+    public static void RemoveTrashBag(Vector3 trashBagTile)
+    {
+        trashBagTiles.Remove(trashBagTile);
+    }
+    /// <summary>
+    /// Removes a mop from the mop list
+    /// </summary>
+    /// <param name="mopTile">The position to remove</param>
+    public static void RemoveMop(Vector3 mopTile)
+    {
+        mopTiles.Remove(mopTile);
     }
 }
