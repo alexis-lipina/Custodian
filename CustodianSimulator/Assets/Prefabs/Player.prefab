@@ -70,11 +70,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d58517efdd7a045898e607fdab96b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mopPrefab: {fileID: 0}
-  trashbagPrefab: {fileID: 0}
-  footprintPrefab: {fileID: 0}
-  maxTrash: 0
-  feetDirtyTurns: 0
+  mopPrefab: {fileID: 1228707240200294, guid: 23cf6ca8755d532469875291a89c78fd, type: 2}
+  trashbagPrefab: {fileID: 1878305246064344, guid: 9c47866b3b8d72243a1969e05e57509e,
+    type: 2}
+  footprintPrefab: {fileID: 1060065112855826, guid: 5c0b946d2d4b29b40a7b9aa0ac99496a,
+    type: 2}
+  waterPrefab: {fileID: 1003188173379218, guid: f82720a3c91b5cb45b06159a2850f733,
+    type: 2}
+  waterFootprintPrefab: {fileID: 1340474487845670, guid: 779fa2df6831c914faeca4ce9e3ad7d9,
+    type: 2}
+  maxTrash: 5
+  feetDirtyTurns: 4
+  mopLifespan: 7
+  canvas: {fileID: 0}
+  uiMopDeployed: {fileID: 0}
+  uiWaterMeter: {fileID: 0}
+  uiGarbageMeter: {fileID: 0}
+  mopDeployedSprites:
+  - {fileID: 21300000, guid: 9fa23cf7d0aaabc49b6d03fc449d21a0, type: 3}
+  - {fileID: 21300000, guid: f74315cf81deed0448f2136f87639b36, type: 3}
+  waterMeterSprites:
+  - {fileID: 21300000, guid: fe2a8600008859b4facd29626590f35b, type: 3}
+  - {fileID: 21300000, guid: 798e8b5477bf71f4da5d2063ac091d32, type: 3}
+  - {fileID: 21300000, guid: 8d868d328abd27949b718a5f3f261d7e, type: 3}
+  - {fileID: 21300000, guid: cbc14439cad56c14a9b3da4a26038575, type: 3}
+  - {fileID: 21300000, guid: 2ef1417143cb3d94c96010a6ccbb8c46, type: 3}
+  - {fileID: 21300000, guid: a1a1e73b00b236246994ff11d507000c, type: 3}
+  - {fileID: 21300000, guid: a2ecbafad8994bf4bbab967c09ac8a60, type: 3}
+  - {fileID: 21300000, guid: 8f3212e9ae922ab4dbe97ea2f873f82d, type: 3}
+  garbageMeterSprites:
+  - {fileID: 21300000, guid: 58691a66fe980784787a7cf6fce916e9, type: 3}
+  - {fileID: 21300000, guid: 8998ec155d2dab745a421fe552606fe3, type: 3}
+  - {fileID: 21300000, guid: fe4b48ebdea559948b242f5d7c8da065, type: 3}
+  - {fileID: 21300000, guid: 5bc6545bc977e5e47a0481dab5dacaf7, type: 3}
+  - {fileID: 21300000, guid: 03cee01436fee3944866cbd759ccae51, type: 3}
+  - {fileID: 21300000, guid: 0cb871bdbb3093a46be5157d33cac6f4, type: 3}
+  deployMop: {fileID: 1398249163366328, guid: ac1461c04645cbd4196e8d55cb2f3069, type: 2}
+  rechargeMop: {fileID: 1923649178963102, guid: 5fc5f1fd22d49ea40b59c138cde8ad78,
+    type: 2}
+  takeOutTrash: {fileID: 1708245974897144, guid: 3fbe95a53004d9e489c88d08fb92a142,
+    type: 2}
 --- !u!212 &212913251483209158
 SpriteRenderer:
   m_ObjectHideFlags: 1

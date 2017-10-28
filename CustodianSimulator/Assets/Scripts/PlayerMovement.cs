@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum Direction { North = 0, East = 270, South = 180, West = 90 }
 public class PlayerMovement : MonoBehaviour
@@ -244,6 +245,12 @@ public class PlayerMovement : MonoBehaviour
             }
             MopFloor(startPos);
             mopTilesLeft--;
+
+
+            if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0)
+            {
+                SceneManager.LoadScene("Bathroom");
+            }
         }
 
         animator.SetBool("walkBool", false);
