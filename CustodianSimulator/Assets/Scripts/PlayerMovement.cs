@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private bool hasMop = false;
     private bool mopDeployed = false;
     private bool hasTrashbag = false;
+    [SerializeField] int maxTrash;
     private int currentTrashLevel = 0;
     [SerializeField] int feetDirtyTurns;
     private int dirtyTurnsRemaining;
@@ -126,11 +127,16 @@ public class PlayerMovement : MonoBehaviour
         float moveSpeed = 5;
 
         //prevents the player from mvoving into restricted squares
+        if(trashCanTiles.Contains(endPos) && hasTrashbag)
+        {
+            hasTrashbag = false;
+            currentTrashLevel = 0;
+        }
         if (wallTiles.Contains(endPos) || trashCanTiles.Contains(endPos) || bucketTiles.Contains(endPos))
         {
             t = 1f;
         }
-        if (!hasTrashbag)
+        if (!hasTrashbag || currentTrashLevel == maxTrash)
         {
             if(trashTiles.Contains(endPos))
             {
@@ -152,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //checks if player ended turn in special tile and acts accordingly
-        if(hasTrashbag && trashTiles.Contains(transform.position))
+        if(hasTrashbag && trashTiles.Contains(transform.position) && currentTrashLevel < maxTrash)
         {
             RemoveTrash();
         }
@@ -162,16 +168,20 @@ public class PlayerMovement : MonoBehaviour
         }
         if(hasMop && mopDeployed && footprintTiles.Contains(transform.position))
         {
-            GameObject footprint = (from GameObject footprintTile in GameObject.FindGameObjectsWithTag("Footprint") where footprintTile.transform.position == transform.position select footprintTile).ToList()[0];
-            footprintTiles.Remove(footprint.transform.position);
-            Destroy(footprint);
+            List<GameObject> footprints = (from GameObject footprintTile in GameObject.FindGameObjectsWithTag("Footprint") where footprintTile.transform.position == transform.position select footprintTile).ToList();
+
+            for(int i = 0; i < footprints.Count; i++)
+            {
+                footprintTiles.Remove(footprints[i].transform.position);
+                Destroy(footprints[i]);
+            }
         }
 
-        if (trashBagTiles.Contains(transform.position))
+        if (trashBagTiles.Contains(transform.position) && !hasTrashbag)
         {
             GetTrashbag();
         }
-        else if (mopTiles.Contains(transform.position))
+        else if (mopTiles.Contains(transform.position) && !hasMop)
         {
             GetMop();
         }
