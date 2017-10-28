@@ -158,24 +158,6 @@ public class PlayerMovement : MonoBehaviour
         {
             RemoveTrash();
         }
-        //clean dirt if mop deployed and have water left
-        if(hasMop && mopDeployed && dirtTiles.Contains(startPos) && mopTilesLeft > 0)
-        {
-            RemoveDirt(startPos);
-        }
-        //remove footprints if mop deployed and have water left
-        if(hasMop && mopDeployed && footprintTiles.Contains(startPos) && mopTilesLeft > 0)
-        {
-            List<GameObject> footprints = (from GameObject footprintTile in GameObject.FindGameObjectsWithTag("Footprint") where footprintTile.transform.position == startPos select footprintTile).ToList();
-
-            for(int i = 0; i < footprints.Count; i++)
-            {
-                footprintTiles.Remove(footprints[i].transform.position);
-                Destroy(footprints[i]);
-            }
-
-            mopTilesLeft--;
-        }
         //makes footprints in water
         if (waterTiles.Contains(transform.position))
         {
@@ -211,6 +193,22 @@ public class PlayerMovement : MonoBehaviour
         //makes water if mop is deployed and have water elft
         if (mopDeployed && mopTilesLeft > 0 && !waterTiles.Contains(startPos))
         {
+            //clean dirt if mop deployed and have water left
+            if (hasMop && mopDeployed && dirtTiles.Contains(startPos))
+            {
+                RemoveDirt(startPos);
+            }
+            //remove footprints if mop deployed and have water left
+            if (hasMop && mopDeployed && footprintTiles.Contains(startPos))
+            {
+                List<GameObject> footprints = (from GameObject footprintTile in GameObject.FindGameObjectsWithTag("Footprint") where footprintTile.transform.position == startPos select footprintTile).ToList();
+
+                for (int i = 0; i < footprints.Count; i++)
+                {
+                    footprintTiles.Remove(footprints[i].transform.position);
+                    Destroy(footprints[i]);
+                }
+            }
             MopFloor(startPos);
             mopTilesLeft--;
         }
@@ -236,7 +234,6 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void RemoveDirt(Vector3 dirtPos)
     {
-        mopTilesLeft--;
         GameObject dirt = (from GameObject dirtTile in GameObject.FindGameObjectsWithTag("Dirt") where dirtTile.transform.position == dirtPos select dirtTile).ToList()[0];
         dirtTiles.Remove(dirt.transform.position);
         Destroy(dirt);
