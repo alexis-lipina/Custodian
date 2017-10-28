@@ -65,16 +65,21 @@ public class PlayerMovement : MonoBehaviour
 
         float moveSpeed = 5;
 
+        if (GameController.WallList.Contains(endPos))
+        {
+            t = 1f;
+        }
+
         if (PlayerCleaning.HasMop)
         {
-            if(GameController.TrashList.Contains(endPos) || GameController.WallList.Contains(endPos))
+            if(GameController.TrashList.Contains(endPos))
             {
                 t = 1f;
             }
         }
         if (PlayerCleaning.HasTrashbag)
         {
-            if(GameController.DirtList.Contains(endPos) || GameController.TrashList.Contains(endPos))
+            if(GameController.DirtList.Contains(endPos))
             {
                 t = 1f;
             }
