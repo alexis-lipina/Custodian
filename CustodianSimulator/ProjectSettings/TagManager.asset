@@ -49,3 +49,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 1603761871
+    locked: 0
+  - name: Walls
+    uniqueID: 4049586219
+    locked: 0
+  - name: Dirt
+    uniqueID: 206076919
+    locked: 0
+  - name: Trash
+    uniqueID: 437450289
+    locked: 0
+  - name: Trashcan
+    uniqueID: 1237772983
+    locked: 0
+  - name: Bucket
+    uniqueID: 3199008147
+    locked: 0
+  - name: Trashbag
+    uniqueID: 692465595
+    locked: 0
+  - name: Mop
+    uniqueID: 3215807483
+    locked: 0
+  - name: Player
+    uniqueID: 30421733
+    locked: 0
