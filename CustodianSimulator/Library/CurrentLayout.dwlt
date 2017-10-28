@@ -90,9 +90,15 @@ MonoBehaviour:
     y: 0
     width: 379
     height: 573
+<<<<<<< HEAD
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
+=======
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 16}
+>>>>>>> 9dfc384abce7313f3df002219d853f8c1b709fab
   m_Panes:
   - {fileID: 17}
   m_Selected: 0
@@ -411,19 +417,33 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
+<<<<<<< HEAD
     - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Prefabs
+=======
+    - Assets/Scripts
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Scripts
+>>>>>>> 9dfc384abce7313f3df002219d853f8c1b709fab
   m_LastFoldersGridSize: -1
   m_LastProjectPath: Z:\IGMProfile\Desktop\repos\Custodian\CustodianSimulator
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: ea240000
     m_LastClickedID: 9450
     m_ExpandedIDs: 00000000c22400002225000000ca9a3bffffff7f
+=======
+    m_SelectedIDs: 4a250000
+    m_LastClickedID: 9546
+    m_ExpandedIDs: 00000000ba24000000ca9a3bffffff7f
+>>>>>>> 9dfc384abce7313f3df002219d853f8c1b709fab
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -567,9 +587,15 @@ MonoBehaviour:
     height: 552
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: dc250000
     m_LastClickedID: 9692
     m_ExpandedIDs: 54a7ffffe2fbffff00000000d2260000aa270000
+=======
+    m_SelectedIDs: 00290000
+    m_LastClickedID: 10496
+    m_ExpandedIDs: 60bdffffe2fbffff00000000
+>>>>>>> 9dfc384abce7313f3df002219d853f8c1b709fab
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -653,9 +679,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 13.129131
     speed: 2
     m_Value: 13.129131
+=======
+    m_Target: 13.982477
+    speed: 2
+    m_Value: 13.982477
+>>>>>>> 9dfc384abce7313f3df002219d853f8c1b709fab
   m_Ortho:
     m_Target: 1
     speed: 2
