@@ -189,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
         if (hasTrashbag)
         {
             trashBagTiles.Add(transform.position);
-            Instantiate(trashbag, transform.position, Quaternion.identity);
+            GameObject trashbag = Instantiate(this.trashbag, transform.position, Quaternion.identity);
             hasTrashbag = false;
         }
         hasMop = true;
