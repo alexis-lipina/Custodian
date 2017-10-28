@@ -7,6 +7,10 @@ TagManager:
   - Wall
   - Trash
   - Dirt
+  - Trashcan
+  - Bucket
+  - Mop
+  - Trashbag
   layers:
   - Default
   - TransparentFX

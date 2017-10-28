@@ -50,8 +50,8 @@ public class PlayerCleaning : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        dirtList = PlayerMovement.DirtList;
-        trashList = PlayerMovement.TrashList;
+        dirtList = GameController.DirtList;
+        trashList = GameController.TrashList;
 	}
 	
 	// Update is called once per frame
@@ -70,7 +70,7 @@ public class PlayerCleaning : MonoBehaviour {
     {
         if(dirtList.Contains(transform.position))
         {
-            PlayerMovement.RemoveDirt(transform.position);
+            GameController.RemoveDirt(transform.position);
         }
     }
 
@@ -78,7 +78,7 @@ public class PlayerCleaning : MonoBehaviour {
     {
         if (trashList.Contains(transform.position))
         {
-            PlayerMovement.RemoveTrash(transform.position);
+            GameController.RemoveTrash(transform.position);
         }
     }
 }
