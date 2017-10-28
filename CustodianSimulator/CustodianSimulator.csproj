@@ -81,11 +81,8 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\Scripts\WallController.cs" />
-=======
     <Compile Include="Assets\Scripts\Trashbag.cs" />
->>>>>>> 9dfc384abce7313f3df002219d853f8c1b709fab
+    <Compile Include="Assets\Scripts\WallController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
