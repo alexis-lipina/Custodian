@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Mop : MonoBehaviour
 {
-    [SerializeField] int waterLeft;
+    [SerializeField] int lifespan;
+    int waterLeft;
+
+
+    private void Start()
+    {
+        waterLeft = lifespan;
+    }
 
     public int WaterLeft
     {
