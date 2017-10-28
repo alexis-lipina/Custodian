@@ -5,13 +5,15 @@ using System.Linq;
 
 public class PlayerCleaning : MonoBehaviour {
 
-    private bool hasMop = false;
-    private bool hasTrashbag = false;
+    private static bool hasMop = false;
+    private static bool hasTrashbag = false;
+    private static bool mopDeployed = false;
+
     private int numOfTrash = 0;
     private List<Vector3> dirtList;
     private List<Vector3> trashList;
 
-    public bool HasMop {
+    public static bool HasMop {
         get { return hasMop; }
         set
         {
@@ -22,7 +24,7 @@ public class PlayerCleaning : MonoBehaviour {
             }
         }
     }
-    public bool HasTrashbag {
+    public static bool HasTrashbag {
         get { return hasTrashbag; }
         set
         {
@@ -33,14 +35,50 @@ public class PlayerCleaning : MonoBehaviour {
             }
         }
     }
+    public static bool MopDeployed
+    {
+        get { return mopDeployed; }
+        set
+        {
+            if (hasMop)
+            {
+                mopDeployed = value;
+            }
+        }
+    }
+    public int NumOfTrash { get { return numOfTrash; } }
 
 	// Use this for initialization
 	void Start () {
-	    
+        dirtList = PlayerMovement.DirtList;
+        trashList = PlayerMovement.TrashList;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (hasMop)
+        {
+            checkDirt();
+        }
+        else if (hasTrashbag)
+        {
+            checkTrash();
+        }
 	}
+
+    private void checkDirt()
+    {
+        if(dirtList.Contains(transform.position))
+        {
+            PlayerMovement.RemoveDirt(transform.position);
+        }
+    }
+
+    private void checkTrash()
+    {
+        if (trashList.Contains(transform.position))
+        {
+            PlayerMovement.RemoveTrash(transform.position);
+        }
+    }
 }
