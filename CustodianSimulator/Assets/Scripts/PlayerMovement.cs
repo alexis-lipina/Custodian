@@ -133,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
                     animator.SetBool("mopDeployed", mopDeployed);
                     if (mopDeployed)
                     {
+                        audioSource.PlayOneShot(mopSound, 0.7f);
                         SuperHero(deployMop);
                     }
                     UpdateUI();
