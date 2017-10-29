@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212913251483209158}
   - component: {fileID: 114786796977039890}
   - component: {fileID: 95166498756808698}
+  - component: {fileID: 82095606572888486}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -42,6 +43,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82095606572888486
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674239755178844}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95166498756808698
 Animator:
   serializedVersion: 3
@@ -115,6 +196,10 @@ MonoBehaviour:
     type: 2}
   takeOutTrash: {fileID: 1708245974897144, guid: 3fbe95a53004d9e489c88d08fb92a142,
     type: 2}
+  mopSound: {fileID: 8300000, guid: 3b7d2f07e95623b4ab41a705ad839b91, type: 3}
+  mopInBucketSound: {fileID: 8300000, guid: edeba2390e50e4c4f91a0f3a499e3ade, type: 3}
+  pickUpTrashSound: {fileID: 8300000, guid: b7c2b82c71e897a48af1990ad714e53d, type: 3}
+  takeOutTrashSound: {fileID: 8300000, guid: 0b67868d901ec6e4a8c352e11c9c04cc, type: 3}
 --- !u!212 &212913251483209158
 SpriteRenderer:
   m_ObjectHideFlags: 1
