@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 public enum Direction { North = 0, East = 270, South = 180, West = 90 }
 public class PlayerMovement : MonoBehaviour
 {
-    private int turns;
+    [SerializeField] Text turnCounter;
+    [SerializeField] int turns;
     [SerializeField] Vector3 missionEnd;
     [SerializeField] Vector3 accomplishedEnd;
 
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool waitingForInput;
     [SerializeField] string levelName;
+    [SerializeField] string thisLevel;
 
     //locations of special tiles
     private List<Vector3> dirtTiles;
@@ -95,12 +97,17 @@ public class PlayerMovement : MonoBehaviour
 
         waitingForInput = false;
 
-        turns = 0;
+        turnCounter.text = "Turns left: " + turns;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R) || turns == 0)
+        {
+            Restart();
+        }
+
         if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0 && trashBagTiles.Count == 0 && currentTrashLevel == 0)
         {
             waitingForInput = true;
@@ -298,7 +305,8 @@ public class PlayerMovement : MonoBehaviour
 
         isMoving = false;
 
-        turns++;
+        turns--;
+        turnCounter.text = "Turns left: " + turns;
     }
 
     /// <summary>
@@ -439,5 +447,10 @@ public class PlayerMovement : MonoBehaviour
             t += Time.deltaTime * speed;
             accomplished.transform.position = Vector3.Lerp(startPos, accomplishedEnd, t);
         }
+    }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene(thisLevel);
     }
 }

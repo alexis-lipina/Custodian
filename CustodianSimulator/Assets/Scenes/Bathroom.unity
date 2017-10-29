@@ -2794,6 +2794,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 629223782}
+  - {fileID: 1236742862}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6880,6 +6881,80 @@ Transform:
   m_PrefabParentObject: {fileID: 4079892016424590, guid: 816f299a7afd4e84591872480084aef7,
     type: 2}
   m_PrefabInternal: {fileID: 1159315335}
+--- !u!1 &1236742861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1236742862}
+  - component: {fileID: 1236742864}
+  - component: {fileID: 1236742863}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1236742862
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236742861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 552367219}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -312, y: 165}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1236742863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236742861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1236742864
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236742861}
 --- !u!1001 &1249806868
 Prefab:
   m_ObjectHideFlags: 0
@@ -10351,6 +10426,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
         type: 2}
+      propertyPath: turnCounter
+      value: 
+      objectReference: {fileID: 1236742863}
+    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
+        type: 2}
       propertyPath: mission
       value: 
       objectReference: {fileID: 1618006354}
@@ -10374,54 +10454,6 @@ Prefab:
       propertyPath: uiGarbageMeter
       value: 
       objectReference: {fileID: 1597991347}
-    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
-        type: 2}
-      propertyPath: waterMeterSprites.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 5a2914044d2536b45a1506d96e443d1e,
-        type: 3}
-    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
-        type: 2}
-      propertyPath: waterMeterSprites.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: b831c33c5ab81d44e8db79122b01fca9,
-        type: 3}
-    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
-        type: 2}
-      propertyPath: waterMeterSprites.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: 8445014dea3fdd64293e1faeeb6936f3,
-        type: 3}
-    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
-        type: 2}
-      propertyPath: waterMeterSprites.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300000, guid: 71388ccbbe513cc408274b6663ff29ee,
-        type: 3}
-    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
-        type: 2}
-      propertyPath: waterMeterSprites.Array.data[5]
-      value: 
-      objectReference: {fileID: 21300000, guid: 3424ebe0f69c5364c9cd1af6af2b6bda,
-        type: 3}
-    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
-        type: 2}
-      propertyPath: waterMeterSprites.Array.data[6]
-      value: 
-      objectReference: {fileID: 21300000, guid: beaf14a3f044ae14d84a8a240d72f3b3,
-        type: 3}
-    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
-        type: 2}
-      propertyPath: waterMeterSprites.Array.data[7]
-      value: 
-      objectReference: {fileID: 21300000, guid: f70dd80e6cdeaf946aef82c218452280,
-        type: 3}
-    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
-        type: 2}
-      propertyPath: waterMeterSprites.Array.data[8]
-      value: 
-      objectReference: {fileID: 21300000, guid: 97e4ee4a7352b9d4bafc7f0f53e42582,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ad98ed762289b340b1d531edf093ad7, type: 2}
   m_IsPrefabParent: 0
