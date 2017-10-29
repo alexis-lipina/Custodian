@@ -83,7 +83,6 @@
     <Compile Include="Assets\Scripts\Pow.cs" />
     <Compile Include="Assets\Scripts\Trashbag.cs" />
     <Compile Include="Assets\Scripts\WallController.cs" />
-    <Compile Include="Assets\Sounds.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
