@@ -9,6 +9,14 @@ public enum Direction { North = 0, East = 270, South = 180, West = 90 }
 public class PlayerMovement : MonoBehaviour
 {
     private int turns;
+    [SerializeField] Vector3 missionEnd;
+    [SerializeField] Vector3 accomplishedEnd;
+
+    [SerializeField] GameObject mission;
+    [SerializeField] GameObject accomplished;
+
+    private bool waitingForInput;
+    [SerializeField] string levelName;
 
     //locations of special tiles
     private List<Vector3> dirtTiles;
@@ -27,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject footprintPrefab;
     [SerializeField] GameObject waterPrefab;
     [SerializeField] GameObject waterFootprintPrefab;
-    
+
     //player states and stats
     private bool hasMop = false;
     private bool mopDeployed = false;
@@ -77,15 +85,24 @@ public class PlayerMovement : MonoBehaviour
         mopDeployed = false;
         hasTrashbag = false;
 
+        waitingForInput = false;
+
         turns = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (waitingForInput)
+        {
+            if (Input.GetButtonDown("Submit"))
+            {
+                SceneManager.LoadScene(levelName);
+            }
+        }
 
         //gets movement input
-        if (!isMoving)
+        if (!isMoving && !waitingForInput)
         {
             if (Input.GetButtonDown("Submit"))
             {
@@ -144,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 endPos = new Vector3(startPos.x + input.x, startPos.y + input.y);
         float moveSpeed = 4;
         //prevents the player from mvoving into restricted squares
-        if(trashCanTiles.Contains(endPos) && hasTrashbag)
+        if (trashCanTiles.Contains(endPos) && hasTrashbag)
         {
             hasTrashbag = false;
             currentTrashLevel = 0;
@@ -162,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
             yield break;
         }
-        if ( trashCanTiles.Contains(endPos) || bucketTiles.Contains(endPos))
+        if (trashCanTiles.Contains(endPos) || bucketTiles.Contains(endPos))
         {
             animator.SetBool("walkBool", false);
             isMoving = false;
@@ -170,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!hasTrashbag || currentTrashLevel == maxTrash)
         {
-            if(trashTiles.Contains(endPos))
+            if (trashTiles.Contains(endPos))
             {
                 animator.SetBool("walkBool", false);
                 isMoving = false;
@@ -212,15 +229,15 @@ public class PlayerMovement : MonoBehaviour
             GetMop();
         }
         //gets feet dirty
-        if(dirtTiles.Contains(transform.position) && (!mopDeployed || mopTilesLeft == 0))
+        if (dirtTiles.Contains(transform.position) && (!mopDeployed || mopTilesLeft == 0))
         {
             dirtyTurnsRemaining = feetDirtyTurns;
         }
         //makes foot prints if feet are dirty
-        if(!dirtTiles.Contains(transform.position) && !trashTiles.Contains(transform.position) && dirtyTurnsRemaining > 0)
+        if (!dirtTiles.Contains(transform.position) && !trashTiles.Contains(transform.position) && dirtyTurnsRemaining > 0)
         {
             dirtyTurnsRemaining--;
-            if(dirtyTurnsRemaining < 0) { dirtyTurnsRemaining = 0; }
+            if (dirtyTurnsRemaining < 0) { dirtyTurnsRemaining = 0; }
             footprintTiles.Add(transform.position);
             Instantiate(footprintPrefab, transform.position, transform.rotation);
         }
@@ -249,7 +266,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0)
             {
-                SceneManager.LoadScene("Bathroom");
+                waitingForInput = true;
+                StartCoroutine("Mission");
             }
         }
 
@@ -272,7 +290,7 @@ public class PlayerMovement : MonoBehaviour
         Destroy(trash);
         currentTrashLevel++;
     }
-    
+
     /// <summary>
     /// Removes dirt from the scene
     /// </summary>
@@ -375,5 +393,28 @@ public class PlayerMovement : MonoBehaviour
     private void SuperHero(GameObject imageToUse)
     {
         Instantiate(imageToUse, transform.position, Quaternion.identity);
+    }
+
+    private IEnumerator Mission()
+    {
+        Vector3 startPos = mission.transform.position;
+        float t = 0;
+        float speed = 5;
+        while (t < 1f)
+        {
+            yield return null;
+            t += Time.deltaTime * speed;
+            mission.transform.position = Vector3.Lerp(startPos, missionEnd, t);
+        }
+
+        startPos = accomplished.transform.position;
+        t = 0;
+        speed = 5;
+        while (t < 1f)
+        {
+            yield return null;
+            t += Time.deltaTime * speed;
+            accomplished.transform.position = Vector3.Lerp(startPos, accomplishedEnd, t);
+        }
     }
 }

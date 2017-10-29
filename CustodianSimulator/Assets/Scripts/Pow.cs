@@ -21,7 +21,7 @@ public class Pow : MonoBehaviour
         SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
         float killspeed = .5f;
         float t = 0;
-        while (t < 1)
+        while (t < 1f)
         {
             t += Time.deltaTime * killspeed;
             //transform.position = Vector3.Lerp(startPos, finalDestination, t);
