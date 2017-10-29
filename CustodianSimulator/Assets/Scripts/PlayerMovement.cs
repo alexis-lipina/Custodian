@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (waitingForInput)
         {
-            if (Input.GetButtonDown("Submit"))
+            if (Input.GetButtonDown("Srubmit"))
             {
                 SceneManager.LoadScene(levelName);
             }
