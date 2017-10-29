@@ -10509,6 +10509,11 @@ Prefab:
       propertyPath: uiGarbageMeter
       value: 
       objectReference: {fileID: 1597991347}
+    - target: {fileID: 114786796977039890, guid: 1ad98ed762289b340b1d531edf093ad7,
+        type: 2}
+      propertyPath: explodeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d357bd19feaf57d4184f9ab10e6967d3, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ad98ed762289b340b1d531edf093ad7, type: 2}
   m_IsPrefabParent: 0

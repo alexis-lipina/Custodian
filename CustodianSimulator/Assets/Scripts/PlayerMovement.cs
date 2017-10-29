@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip mopInBucketSound;
     [SerializeField] AudioClip pickUpTrashSound;
     [SerializeField] AudioClip takeOutTrashSound;
+    [SerializeField] AudioClip explodeSound;
     AudioSource audioSource;
 
 
@@ -108,8 +109,9 @@ public class PlayerMovement : MonoBehaviour
             Restart();
         }
 
-        if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0 && trashBagTiles.Count == 0 && currentTrashLevel == 0)
+        if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0 && trashBagTiles.Count == 0 && currentTrashLevel == 0 && !isMoving)
         {
+            isMoving = true;
             waitingForInput = true;
             StartCoroutine("Mission");
         }
@@ -436,6 +438,7 @@ public class PlayerMovement : MonoBehaviour
             t += Time.deltaTime * speed;
             mission.transform.position = Vector3.Lerp(startPos, missionEnd, t);
         }
+        audioSource.PlayOneShot(explodeSound, 0.7f);
 
         yield return new WaitForSeconds(.7f);
 
@@ -448,6 +451,7 @@ public class PlayerMovement : MonoBehaviour
             t += Time.deltaTime * speed;
             accomplished.transform.position = Vector3.Lerp(startPos, accomplishedEnd, t);
         }
+        audioSource.PlayOneShot(explodeSound, 0.7f);
     }
 
     private void Restart()

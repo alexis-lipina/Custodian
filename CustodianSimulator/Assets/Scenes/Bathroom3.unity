@@ -4929,7 +4929,18 @@ Prefab:
       propertyPath: turns
       value: 130
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114636943611642356, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
+        type: 2}
+      propertyPath: explodeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d357bd19feaf57d4184f9ab10e6967d3, type: 3}
+    - target: {fileID: 82984334417660716, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
+        type: 2}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 82984334417660716, guid: 119dfc5da6ce90047829be7e4d8dc0b5, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 119dfc5da6ce90047829be7e4d8dc0b5, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1477431435 stripped

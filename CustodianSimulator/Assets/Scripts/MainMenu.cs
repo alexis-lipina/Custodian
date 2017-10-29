@@ -10,6 +10,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Vector3 custodiEnd;
     [SerializeField] Vector3 manEnd;
 
+    [SerializeField] AudioClip explodeSound;
+    AudioSource audioSource;
+
     private bool waitingForInput;
 
 
@@ -29,6 +32,7 @@ public class MainMenu : MonoBehaviour
     void Start () {
         waitingForInput = false;
         StartCoroutine("Mission");
+        audioSource = GetComponent<AudioSource>();
 	}
 
     private IEnumerator Mission()
@@ -42,6 +46,7 @@ public class MainMenu : MonoBehaviour
             t += Time.deltaTime * speed;
             custodi.transform.position = Vector3.Lerp(startPos, custodiEnd, t);
         }
+        audioSource.PlayOneShot(explodeSound, 0.7f);
 
         yield return new WaitForSeconds(.7f);
 
@@ -54,6 +59,7 @@ public class MainMenu : MonoBehaviour
             t += Time.deltaTime * speed;
             man.transform.position = Vector3.Lerp(startPos, manEnd, t);
         }
+        audioSource.PlayOneShot(explodeSound, 0.7f);
         waitingForInput = true;
     }
 }
