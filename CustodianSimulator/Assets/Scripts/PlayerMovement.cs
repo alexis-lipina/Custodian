@@ -93,6 +93,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0)
+        {
+            waitingForInput = true;
+            StartCoroutine("Mission");
+        }
+
         if (waitingForInput)
         {
             if (Input.GetButtonDown("Submit"))
@@ -167,11 +173,13 @@ public class PlayerMovement : MonoBehaviour
             currentTrashLevel = 0;
             animator.SetBool("garbageBool", false);
             SuperHero(takeOutTrash);
+            UpdateUI();
         }
         if (bucketTiles.Contains(endPos) && hasMop)
         {
             mopTilesLeft = mopLifespan;
             SuperHero(rechargeMop);
+            UpdateUI();
         }
         if (wallTiles.Contains(endPos))
         {
@@ -264,11 +272,7 @@ public class PlayerMovement : MonoBehaviour
             mopTilesLeft--;
 
 
-            if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0)
-            {
-                waitingForInput = true;
-                StartCoroutine("Mission");
-            }
+            
         }
 
         animator.SetBool("walkBool", false);
