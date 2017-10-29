@@ -61,6 +61,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject rechargeMop;
     [SerializeField] GameObject takeOutTrash;
 
+    //audio
+    [SerializeField] AudioClip mopSound;
+    [SerializeField] AudioClip mopInBucketSound;
+    [SerializeField] AudioClip pickUpTrashSound;
+    [SerializeField] AudioClip takeOutTrashSound;
+    AudioSource audioSource;
+
 
     void Start()
     {
@@ -76,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         waterTiles = new List<Vector3>();
 
         animator = gameObject.GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         uiMopDeployed.SetActive(false);
         uiWaterMeter.SetActive(false);
@@ -93,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0)
+        if (dirtTiles.Count == 0 && footprintTiles.Count == 0 && trashTiles.Count == 0 && trashBagTiles.Count == 0 && currentTrashLevel == 0)
         {
             waitingForInput = true;
             StartCoroutine("Mission");
@@ -149,6 +157,10 @@ public class PlayerMovement : MonoBehaviour
                 input.x = -1;
                 StartCoroutine(Move(input, Direction.West));
             }
+            if(mopDeployed && (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.D)|| Input.GetKeyDown(KeyCode.A)))
+            {
+                audioSource.PlayOneShot(mopSound, 0.7f);
+            }
         }
     }
 
@@ -177,6 +189,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (bucketTiles.Contains(endPos) && hasMop)
         {
+            audioSource.PlayOneShot(mopInBucketSound, 0.7f);
             mopTilesLeft = mopLifespan;
             SuperHero(rechargeMop);
             UpdateUI();
@@ -189,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (trashCanTiles.Contains(endPos) || bucketTiles.Contains(endPos))
         {
+            audioSource.PlayOneShot(takeOutTrashSound, 0.7f);
             animator.SetBool("walkBool", false);
             isMoving = false;
             yield break;
@@ -215,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
         //pick up trash if have trash bag and space in bac
         if (hasTrashbag && trashTiles.Contains(transform.position) && currentTrashLevel < maxTrash)
         {
+            audioSource.PlayOneShot(pickUpTrashSound, 0.7f);
             RemoveTrash();
         }
         //makes footprints in water
@@ -229,11 +244,13 @@ public class PlayerMovement : MonoBehaviour
         //pick up trashbag
         if (trashBagTiles.Contains(transform.position) && !hasTrashbag)
         {
+            audioSource.PlayOneShot(pickUpTrashSound, 0.7f);
             GetTrashbag();
         }
         //pick up mop
         else if (mopTiles.Contains(transform.position) && !hasMop)
         {
+            audioSource.PlayOneShot(mopInBucketSound, 0.7f);
             GetMop();
         }
         //gets feet dirty
@@ -410,6 +427,8 @@ public class PlayerMovement : MonoBehaviour
             t += Time.deltaTime * speed;
             mission.transform.position = Vector3.Lerp(startPos, missionEnd, t);
         }
+
+        yield return new WaitForSeconds(.7f);
 
         startPos = accomplished.transform.position;
         t = 0;
