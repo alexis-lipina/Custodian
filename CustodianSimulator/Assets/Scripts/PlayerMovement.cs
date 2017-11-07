@@ -268,14 +268,7 @@ public class PlayerMovement : MonoBehaviour
         {
             dirtyTurnsRemaining = feetDirtyTurns;
         }
-        //makes foot prints if feet are dirty
-        if (!dirtTiles.Contains(transform.position) && !trashTiles.Contains(transform.position) && dirtyTurnsRemaining > 0)
-        {
-            dirtyTurnsRemaining--;
-            if (dirtyTurnsRemaining < 0) { dirtyTurnsRemaining = 0; }
-            footprintTiles.Add(transform.position);
-            Instantiate(footprintPrefab, transform.position, transform.rotation);
-        }
+        
         //makes water if mop is deployed and have water elft
         if (mopDeployed && mopTilesLeft > 0 && !waterTiles.Contains(startPos))
         {
@@ -298,8 +291,22 @@ public class PlayerMovement : MonoBehaviour
             MopFloor(startPos);
             mopTilesLeft--;
 
-
-            
+        }
+        //makes foot prints if feet are dirty
+        if (!dirtTiles.Contains(transform.position) && !trashTiles.Contains(transform.position) && dirtyTurnsRemaining > 0)
+        {
+            //stops making footprints when you move with mop deployed
+            if (mopDeployed)
+            {
+                dirtyTurnsRemaining = 0;
+            }
+            else
+            {
+                dirtyTurnsRemaining--;
+                if (dirtyTurnsRemaining < 0) { dirtyTurnsRemaining = 0; }
+                footprintTiles.Add(transform.position);
+                Instantiate(footprintPrefab, transform.position, transform.rotation);
+            }
         }
 
         animator.SetBool("walkBool", false);
