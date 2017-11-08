@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Vector3 custodiEnd;
     [SerializeField] Vector3 manEnd;
 
+    [SerializeField] string firstLevel;
+
     [SerializeField] AudioClip explodeSound;
     AudioSource audioSource;
 
@@ -22,7 +24,7 @@ public class MainMenu : MonoBehaviour
         {
             if (Input.GetButtonDown("Submit"))
             {
-                SceneManager.LoadScene("Bathroom");
+                SceneManager.LoadScene(firstLevel);
             }
         }
 

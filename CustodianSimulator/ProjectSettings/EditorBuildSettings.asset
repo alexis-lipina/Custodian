@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bathroom3.unity
     guid: 7422953ec7f3b514c942bf4acb3b9361
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: c14a00c2b33ea0344bdbe147987dfd75
