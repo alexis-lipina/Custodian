@@ -1,11 +1,19 @@
 fileFormatVersion: 2
 guid: b61a0b136d85b3646919cff104516d0d
-timeCreated: 1510104004
+timeCreated: 1510348983
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - wall: {instanceID: 0}
+  - floor: {instanceID: 0}
+  - Sink: {instanceID: 0}
+  - Toilet: {instanceID: 0}
+  - TrashCan: {instanceID: 0}
+  - TrashBag: {instanceID: 0}
+  - Bucket: {instanceID: 0}
+  - Mop: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
