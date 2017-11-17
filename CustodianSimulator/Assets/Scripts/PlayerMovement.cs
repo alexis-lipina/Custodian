@@ -9,7 +9,7 @@ public enum Direction { North = 0, East = 270, South = 180, West = 90 }
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Text turnCounter;
-    [SerializeField] int turns;
+    private int turns;
     [SerializeField] Vector3 missionEnd;
     [SerializeField] Vector3 accomplishedEnd;
 
@@ -74,6 +74,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        turns = 0;
+
         //gets all special tiles
         dirtTiles = (from GameObject dirtTile in GameObject.FindGameObjectsWithTag("Dirt") select dirtTile.transform.position).ToList();
         trashTiles = (from GameObject trashTile in GameObject.FindGameObjectsWithTag("Trash") select trashTile.transform.position).ToList();
@@ -99,12 +101,17 @@ public class PlayerMovement : MonoBehaviour
         waitingForInput = false;
 
         turnCounter.text = "Turns left: " + turns;
+        HighScoreBoard scoreBoard = GameObject.Find(thisLevel + "Scorer").GetComponent<HighScoreBoard>();
+        if (scoreBoard.HighestAScore() != int.MaxValue)
+        {
+            turnCounter.text += "   Best Score: " + scoreBoard.HighestAScore();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) || turns == 0)
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Restart();
         }
@@ -120,6 +127,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Submit"))
             {
+                HighScoreBoard scoreBoard = GameObject.Find(thisLevel + "Scorer").GetComponent<HighScoreBoard>();
+                scoreBoard.AddScore(turns);
                 SceneManager.LoadScene(levelName);
             }
         }
@@ -264,7 +273,7 @@ public class PlayerMovement : MonoBehaviour
             GetMop();
         }
         //gets feet dirty
-        if (dirtTiles.Contains(transform.position) && (!mopDeployed || mopTilesLeft == 0))
+        if (dirtTiles.Contains(transform.position) && (!mopDeployed || mopTilesLeft <= 0))
         {
             dirtyTurnsRemaining = feetDirtyTurns;
         }
@@ -296,7 +305,7 @@ public class PlayerMovement : MonoBehaviour
         if (!dirtTiles.Contains(transform.position) && !trashTiles.Contains(transform.position) && dirtyTurnsRemaining > 0)
         {
             //stops making footprints when you move with mop deployed
-            if (mopDeployed)
+            if (mopDeployed && mopTilesLeft > 0)
             {
                 dirtyTurnsRemaining = 0;
             }
@@ -315,8 +324,17 @@ public class PlayerMovement : MonoBehaviour
 
         isMoving = false;
 
-        turns--;
+        turns++;
         turnCounter.text = "Turns left: " + turns;
+        HighScoreBoard scoreBoard = GameObject.Find(thisLevel + "Scorer").GetComponent<HighScoreBoard>();
+        if (scoreBoard.HighestAScore() != int.MaxValue)
+        {
+            string turnText = turnCounter.text;
+            turnText += "   Best Score: " + scoreBoard.HighestAScore();
+
+            turnCounter.text = turnText;
+        }
+
     }
 
     /// <summary>
