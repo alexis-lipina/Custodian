@@ -40,12 +40,14 @@ public class LevelCreator : MonoBehaviour
                 Draw(detailMap, Sink, 7, 7);
                 Draw(detailMap, Sink, 9, 7);
                 Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 6, 3);
+                Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 9, 3);
                 Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 4, 5);
                 Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 6, 6);
                 Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 7, 6);
                 Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 9, 6);
                 Draw(detailMap, TrashCan, 9, 5);
                 Draw(detailMap, TrashBag, 10, 6);
+                Draw(detailMap, TrashBag, 12, 2);
 
                 break;
         }
