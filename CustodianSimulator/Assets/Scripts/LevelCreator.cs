@@ -20,6 +20,7 @@ public class LevelCreator : MonoBehaviour
     [SerializeField] GameObject Bucket;
     [SerializeField] GameObject Mop;
     [SerializeField] GameObject[] Trash;
+    [SerializeField] GameObject[] TrashTutorial;
     [SerializeField] GameObject[] Dirt;
 
     // Use this for initialization
@@ -39,13 +40,16 @@ public class LevelCreator : MonoBehaviour
                 Draw(detailMap, Sink, 5, 7);
                 Draw(detailMap, Sink, 7, 7);
                 Draw(detailMap, Sink, 9, 7);
-                Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 6, 3);
+                Draw(detailMap, TrashTutorial[0], 7, 6);
+                Draw(detailMap, TrashTutorial[1], 6, 5);
+                Draw(detailMap, TrashTutorial[2], 7, 5);
+                Draw(detailMap, TrashTutorial[3], 8, 5);
+                Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 9, 3);
+                Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 10, 2);
                 Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 4, 5);
-                Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 6, 6);
-                Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 7, 6);
-                Draw(detailMap, Trash[Random.Range(0, Trash.Length)], 9, 6);
                 Draw(detailMap, TrashCan, 9, 5);
                 Draw(detailMap, TrashBag, 10, 6);
+                Draw(detailMap, TrashBag, 12, 2);
 
                 break;
         }

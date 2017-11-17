@@ -290,12 +290,12 @@ Prefab:
     - target: {fileID: 224817319108217626, guid: 483c042e80f3e984f9294701836a76db,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224754607048256242, guid: 483c042e80f3e984f9294701836a76db,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224113466047484904, guid: 483c042e80f3e984f9294701836a76db,
         type: 2}
@@ -331,6 +331,26 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 224817319108217626, guid: 483c042e80f3e984f9294701836a76db,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224817319108217626, guid: 483c042e80f3e984f9294701836a76db,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224754607048256242, guid: 483c042e80f3e984f9294701836a76db,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224754607048256242, guid: 483c042e80f3e984f9294701836a76db,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 483c042e80f3e984f9294701836a76db, type: 2}
@@ -589,12 +609,12 @@ Prefab:
     - target: {fileID: 114636943611642356, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
         type: 2}
       propertyPath: turns
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 114636943611642356, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
         type: 2}
       propertyPath: levelName
-      value: Bathroom
+      value: Bathroom0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 82074147572482590, guid: 119dfc5da6ce90047829be7e4d8dc0b5, type: 2}
@@ -629,6 +649,11 @@ MonoBehaviour:
   - {fileID: 1422611099089136, guid: 462e261a9391f0c4aa5aa3d2c639d106, type: 2}
   - {fileID: 1653235472288434, guid: 16b1f3346867abe47b990445e4b85021, type: 2}
   - {fileID: 1265774373768488, guid: c2132b5ee5e5d1b4b9e696a515f5c087, type: 2}
+  TrashTutorial:
+  - {fileID: 1817361861870326, guid: de0a809a4a3e98649b81281d26a9939c, type: 2}
+  - {fileID: 1092979908230058, guid: ad1e9d89adb2b094d893ecfb6d0c8a1f, type: 2}
+  - {fileID: 1670845095670992, guid: 7be2d55d111713141bf51d9801cf0e22, type: 2}
+  - {fileID: 1611059817010354, guid: 3ec42e2d9543beb4aa1ab5fa269f7c44, type: 2}
   Dirt:
   - {fileID: 1533927574794776, guid: 372074ceca8044d40a3cf75ac28e1a8b, type: 2}
   - {fileID: 1435926323377644, guid: 8f47bb47f3d2b7d47bf86a869c5cdbe2, type: 2}
