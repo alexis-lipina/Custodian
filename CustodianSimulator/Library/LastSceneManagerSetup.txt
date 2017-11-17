@@ -1,4 +1,8 @@
 sceneSetups:
-- path: Assets/Scenes/Level1.unity
+<<<<<<< HEAD
+- path: Assets/Scenes/Bathroom0.5.unity
+=======
+- path: Assets/Scenes/MainMenu.unity
+>>>>>>> d4e8beddf2988df1dd040a1784fb13802b8cc5eb
   isLoaded: 1
   isActive: 1
