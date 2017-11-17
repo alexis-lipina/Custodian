@@ -355,29 +355,29 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 483c042e80f3e984f9294701836a76db, type: 2}
   m_IsPrefabParent: 0
---- !u!223 &61506956 stripped
-Canvas:
-  m_PrefabParentObject: {fileID: 223412873833211348, guid: 483c042e80f3e984f9294701836a76db,
+--- !u!1 &61506956 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1132623936050092, guid: 483c042e80f3e984f9294701836a76db,
     type: 2}
   m_PrefabInternal: {fileID: 61506955}
 --- !u!1 &61506957 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1639858005492576, guid: 483c042e80f3e984f9294701836a76db,
+  m_PrefabParentObject: {fileID: 1170548815776092, guid: 483c042e80f3e984f9294701836a76db,
     type: 2}
   m_PrefabInternal: {fileID: 61506955}
 --- !u!1 &61506958 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1453554508932250, guid: 483c042e80f3e984f9294701836a76db,
+  m_PrefabParentObject: {fileID: 1059462539084300, guid: 483c042e80f3e984f9294701836a76db,
     type: 2}
   m_PrefabInternal: {fileID: 61506955}
---- !u!1 &61506959 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1881141509368408, guid: 483c042e80f3e984f9294701836a76db,
+--- !u!223 &61506959 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223430980929181760, guid: 483c042e80f3e984f9294701836a76db,
     type: 2}
   m_PrefabInternal: {fileID: 61506955}
---- !u!114 &456413537 stripped
+--- !u!114 &61506960 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114403815429023892, guid: 483c042e80f3e984f9294701836a76db,
+  m_PrefabParentObject: {fileID: 114999089931184970, guid: 483c042e80f3e984f9294701836a76db,
     type: 2}
   m_PrefabInternal: {fileID: 61506955}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -576,22 +576,22 @@ Prefab:
         type: 2}
       propertyPath: canvas
       value: 
-      objectReference: {fileID: 61506956}
+      objectReference: {fileID: 61506959}
     - target: {fileID: 114636943611642356, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
         type: 2}
       propertyPath: uiMopDeployed
       value: 
-      objectReference: {fileID: 61506959}
+      objectReference: {fileID: 61506958}
     - target: {fileID: 114636943611642356, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
         type: 2}
       propertyPath: uiWaterMeter
       value: 
-      objectReference: {fileID: 61506958}
+      objectReference: {fileID: 61506957}
     - target: {fileID: 114636943611642356, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
         type: 2}
       propertyPath: uiGarbageMeter
       value: 
-      objectReference: {fileID: 61506957}
+      objectReference: {fileID: 61506956}
     - target: {fileID: 114636943611642356, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
         type: 2}
       propertyPath: explodeSound
@@ -605,7 +605,7 @@ Prefab:
         type: 2}
       propertyPath: turnCounter
       value: 
-      objectReference: {fileID: 456413537}
+      objectReference: {fileID: 61506960}
     - target: {fileID: 114636943611642356, guid: 119dfc5da6ce90047829be7e4d8dc0b5,
         type: 2}
       propertyPath: turns
