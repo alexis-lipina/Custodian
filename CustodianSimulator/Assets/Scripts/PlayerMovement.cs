@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
         waitingForInput = false;
 
-        turnCounter.text = "Turns left: " + turns;
+        turnCounter.text = "Turns taken: " + turns;
         HighScoreBoard scoreBoard = GameObject.Find(thisLevel + "Scorer").GetComponent<HighScoreBoard>();
         if (scoreBoard.HighestAScore() != int.MaxValue)
         {
@@ -325,7 +325,7 @@ public class PlayerMovement : MonoBehaviour
         isMoving = false;
 
         turns++;
-        turnCounter.text = "Turns left: " + turns;
+        turnCounter.text = "Turns taken: " + turns;
         HighScoreBoard scoreBoard = GameObject.Find(thisLevel + "Scorer").GetComponent<HighScoreBoard>();
         if (scoreBoard.HighestAScore() != int.MaxValue)
         {
